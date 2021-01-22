@@ -1,10 +1,13 @@
 import React from 'react'
 
+// components
+import Layout from '../components/Layout'
+
 const LoginPage = () => {
     return (
-        <div>
+        <Layout>
             <h1 className='text-2xl'>Login page</h1>
-        </div>
+        </Layout>
     )
 }
 export default LoginPage
