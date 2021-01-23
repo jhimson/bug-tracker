@@ -4,6 +4,7 @@ import React from 'react'
 import Layout from '../components/Layout'
 
 import logo from '../assets/images/login-logo.png'
+import { Link } from 'react-router-dom'
 
 const LoginPage = () => {
     return (
@@ -27,7 +28,7 @@ const LoginPage = () => {
                             <button className='w-full py-2 mt-5 text-lg font-bold bg-blue-400 rounded focus:outline-none focus:ring-2 '>Login</button>
                         </div>
                         <div>
-                            <p className='mt-5 text-center text-md'>Don't have an account? <a href="" className='text-purple-600'>Sign up</a></p>
+                            <p className='mt-5 text-center text-md'>Don't have an account? <Link to='/register' className='text-purple-600'>Sign up</Link></p>
                         </div>
                     </form>
                 </div>
