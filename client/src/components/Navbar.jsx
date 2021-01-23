@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import LOGO from '../assets/images/j•p.svg'
 import {GiHamburgerMenu} from 'react-icons/gi'
 import {AiOutlineClose} from 'react-icons/ai'
-import {useHistory, useLocation} from 'react-router-dom'
+import {useHistory, useLocation, Link} from 'react-router-dom'
 // import {Link as ScrollLink} from 'react-scroll'
 
 const Navbar = () => {
@@ -19,7 +19,7 @@ const Navbar = () => {
         <div className='flex flex-col justify-between py-3 mx-auto bg-black lg:flex-row lg:p-0 navbar-container'>
             <div className="flex items-center justify-between lg:mx-21">
                 <div className="flex cursor-pointer lg:animate-float">
-                    <img src={LOGO} alt="" className='w-24 h-24 lg:h-32 lg:w-32'/>
+                    <Link to='/'><img src={LOGO} alt="" className='w-24 h-24 lg:h-32 lg:w-32'/></Link>
                 </div>
                 {location.pathname !== "/" ? (
                     <div className={`${toggle ? 'flex' : 'hidden'} flex-col justify-center lg:items-center pb-4 lg:pb-0 lg:flex`}>
