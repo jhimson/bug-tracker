@@ -9,7 +9,7 @@ const LoginPage = () => {
     return (
         <Layout>
             <div className='flex items-center justify-center h-screen'>
-                <div className='w-1/4 h-auto p-5 bg-gray-100 rounded-lg'>
+                <div className='w-1/4 h-auto p-5 bg-gray-200 rounded-lg'>
                     <div>
                         <img src={logo} alt="" className='w-full h-72'/>
                     </div>
