@@ -1,11 +1,12 @@
 import './App.css';
 
-import {Switch, Route} from 'react-router-dom';
+import {Switch, Route, Router} from 'react-router-dom';
 
-// Components
+// Pages
 import LoginPage from './pages/LoginPage'
 import RegisterPage from './pages/RegisterPage'
 import PageNotFound from './pages/PageNotFound'
+import DashboardPage from './pages/DashboardPage'
 
 
 
@@ -14,6 +15,7 @@ function App() {
     <Switch>
       <Route path='/' component={LoginPage} exact/>
       <Route path='/register' component={RegisterPage} exact/>
+      <Route path='/dashboard' component={DashboardPage} exact />
       <Route component={PageNotFound} exact/>
     </Switch>
   );
