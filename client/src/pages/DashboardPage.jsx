@@ -1,55 +1,21 @@
 /* eslint-disable react/button-has-type */
 import React from 'react';
 
+// Icons
 import { AiOutlineFileAdd } from 'react-icons/ai';
 import { FcDocument } from 'react-icons/fc';
 import { IoIosArrowUp, IoMdArrowUp } from 'react-icons/io';
 
+// Components
 import Layout from '../components/Layout';
+import ProjectList from '../components/ProjectList';
 
 const DashboardPage = () => (
   <Layout>
     <div className="h-screen bg-gray-100">
       <div className="flex items-start justify-center p-10 space-x-5">
         <div className="flex flex-col w-screen space-y-2">
-          <div className="p-5">
-            <div className="flex items-start justify-between">
-              <div className="flex items-center space-x-2">
-                <IoIosArrowUp
-                  size="2em"
-                  className="mb-2 cursor-pointer hover:text-green-500"
-                />
-                <h1 className="mb-2 text-lg font-bold">Projects</h1>
-              </div>
-              <AiOutlineFileAdd size="2em" className="cursor-pointer" />
-            </div>
-            <div className="p-3 mb-4 bg-white rounded shadow-lg cursor-pointer hover:bg-blue-400 hover:text-white hover:font-bold">
-              <div className="flex space-x-2">
-                <div className="p-1 bg-white rounded-full">
-                  <FcDocument size="3em" />
-                </div>
-                <div>
-                  <h1 className="font-bold text-md">
-                    E-Commerce Web application
-                  </h1>
-                  <p className="text-gray-800 hover:font-bold">TSYS</p>
-                </div>
-              </div>
-            </div>
-            <div className="p-3 bg-white rounded shadow-lg cursor-pointer hover:bg-blue-400 hover:text-white hover:font-bold">
-              <div className="flex space-x-2">
-                <div className="p-1 bg-white rounded-full">
-                  <FcDocument size="3em" />
-                </div>
-                <div>
-                  <h1 className="font-bold text-md">
-                    Employee Management System
-                  </h1>
-                  <p className="text-gray-800 hover:font-bold">ESYS</p>
-                </div>
-              </div>
-            </div>
-          </div>
+          <ProjectList />
           <div className="p-5">
             <div className="flex items-start justify-between">
               <div className="flex items-center space-x-2">
