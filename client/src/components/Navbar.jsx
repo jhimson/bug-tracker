@@ -14,7 +14,7 @@ const Navbar = () => {
 
   useEffect(() => {
     console.log(location.pathname);
-  }, []);
+  }, [pathname]);
   return (
     //! Main navbar wrapper ~~~START
     <div className="flex flex-col justify-between py-3 mx-auto bg-black lg:flex-row lg:p-0 navbar-container">
