@@ -15,6 +15,18 @@ const RecentUpdatesList = () => (
       userFullname="Jhimson Ray Pamisa"
       action="posted"
     />
+    <RecentUpdateItem
+      projectKey="TSYS"
+      issueName="Bug profile"
+      userFullname="Jhimson Ray Pamisa"
+      action="posted"
+    />
+    <RecentUpdateItem
+      projectKey="TSYS"
+      issueName="Bug profile"
+      userFullname="Jhimson Ray Pamisa"
+      action="posted"
+    />
   </>
 );
 
