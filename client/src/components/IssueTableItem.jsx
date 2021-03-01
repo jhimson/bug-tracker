@@ -37,6 +37,45 @@ const IssueTableItem = ({
         break;
     }
   };
+
+  const StatusBtnColor = (status) => {
+    switch (status) {
+      case 'Open':
+        return (
+          <button className="p-1 px-5 text-sm text-white bg-red-400 rounded-full">
+            {status}
+          </button>
+        );
+        break;
+
+      case 'In Progress':
+        return (
+          <button className="p-1 px-5 text-sm text-white bg-blue-500 rounded-full">
+            {status}
+          </button>
+        );
+        break;
+
+      case 'Resolved':
+        return (
+          <button className="p-1 px-5 text-sm text-white bg-green-500 rounded-full">
+            {status}
+          </button>
+        );
+        break;
+
+      case 'Closed':
+        return (
+          <button className="p-1 px-5 text-sm text-white bg-green-800 rounded-full">
+            {status}
+          </button>
+        );
+        break;
+
+      default:
+        break;
+    }
+  };
   return (
     <tr className="border">
       <td className="p-1 text-blue-800 border">{issueKey}</td>
@@ -46,11 +85,7 @@ const IssueTableItem = ({
           {priorityArrow(issuePriority)}
         </div>
       </td>
-      <td className="p-1 border">
-        <button className="p-1 px-5 text-sm text-white bg-red-400 rounded-full">
-          {issueStatus}
-        </button>
-      </td>
+      <td className="p-1 border">{StatusBtnColor(issueStatus)}</td>
       <td className="p-1 font-semibold text-gray-600 border">{issueDueDate}</td>
     </tr>
   );
