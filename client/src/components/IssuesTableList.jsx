@@ -2,7 +2,7 @@
 import React from 'react';
 
 // icons
-import { IoIosArrowUp, IoMdArrowUp } from 'react-icons/io';
+import { IoMdArrowUp } from 'react-icons/io';
 
 const IssuesTableList = () => (
   <div className="table w-full p-1 issues">
