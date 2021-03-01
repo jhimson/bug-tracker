@@ -5,7 +5,7 @@ import { IoIosArrowUp } from 'react-icons/io';
 // components
 import RecentUpdateItem from './RecentUpdateItem';
 
-const RecentUpdatesList = () => (
+const RecentUpdatesList = ({ recentUpdatesList }) => (
   <>
     <div className="w-screen p-5">
       <div className="flex items-start justify-between">
@@ -21,24 +21,14 @@ const RecentUpdatesList = () => (
         <div className="px-6 py-2 border-b border-gray-500">
           <h1 className="font-semibold text-md">Sat Jan. 23, 2021</h1>
         </div>
-        <RecentUpdateItem
-          projectKey="TSYS"
-          issueName="Bug profile"
-          userFullname="Jhimson Ray Pamisa"
-          action="posted"
-        />
-        <RecentUpdateItem
-          projectKey="TSYS"
-          issueName="Bug profile"
-          userFullname="Jhimson Ray Pamisa"
-          action="posted"
-        />
-        <RecentUpdateItem
-          projectKey="TSYS"
-          issueName="Bug profile"
-          userFullname="Jhimson Ray Pamisa"
-          action="posted"
-        />
+        {recentUpdatesList.map((updateItem) => (
+          <RecentUpdateItem
+            projectKey={updateItem.projectKey}
+            issueName={updateItem.issueName}
+            userFullname={updateItem.userFullname}
+            action={updateItem.action}
+          />
+        ))}
       </div>
     </div>
   </>

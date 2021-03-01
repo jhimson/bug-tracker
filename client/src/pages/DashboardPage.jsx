@@ -12,7 +12,7 @@ import { BsFillStarFill } from 'react-icons/bs';
 // Components
 import Layout from '../components/Layout';
 import Projects from '../components/Projects';
-import RecentUpdatesList from '../components/RecentUpdatesList';
+import RecentUpdates from '../components/RecentUpdates';
 
 const DashboardPage = () => (
   <Layout>
@@ -94,7 +94,7 @@ const DashboardPage = () => (
             </div>
           </div>
         </div>
-        <RecentUpdatesList />
+        <RecentUpdates />
       </div>
     </div>
   </Layout>
