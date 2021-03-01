@@ -94,20 +94,7 @@ const DashboardPage = () => (
             </div>
           </div>
         </div>
-        <div className="w-screen p-5">
-          <div className="flex items-start justify-between">
-            <div className="flex items-center space-x-2">
-              <IoIosArrowUp
-                size="2em"
-                className="mb-2 cursor-pointer hover:text-green-500"
-              />
-              <h1 className="mb-2 text-lg font-bold">Recent updates</h1>
-            </div>
-          </div>
-          <div className="bg-white rounded shadow-lg">
-            <RecentUpdatesList />
-          </div>
-        </div>
+        <RecentUpdatesList />
       </div>
     </div>
   </Layout>
