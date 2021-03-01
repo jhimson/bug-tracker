@@ -11,7 +11,7 @@ import { BsFillStarFill } from 'react-icons/bs';
 
 // Components
 import Layout from '../components/Layout';
-import ProjectList from '../components/ProjectList';
+import Projects from '../components/Projects';
 import RecentUpdatesList from '../components/RecentUpdatesList';
 
 const DashboardPage = () => (
@@ -19,7 +19,7 @@ const DashboardPage = () => (
     <div className="h-screen bg-gray-100">
       <div className="flex items-start justify-center p-10 space-x-5">
         <div className="flex flex-col w-screen space-y-2">
-          <ProjectList />
+          <Projects />
           <div className="p-5">
             <div className="flex items-start justify-between">
               <div className="flex items-center space-x-2">
