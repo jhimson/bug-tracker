@@ -32,7 +32,7 @@ const Issues = () => {
     },
   ];
   return (
-    <div className="p-5">
+    <div className="w-full p-5">
       <div className="flex items-start justify-between">
         <div className="flex items-center space-x-2">
           <IoIosArrowUp

@@ -7,7 +7,7 @@ import RecentUpdateItem from './RecentUpdateItem';
 
 const RecentUpdatesList = ({ recentUpdatesList }) => (
   <>
-    <div className="w-screen p-5">
+    <div className="w-full p-5 ">
       <div className="flex items-start justify-between">
         <div className="flex items-center space-x-2">
           <IoIosArrowUp

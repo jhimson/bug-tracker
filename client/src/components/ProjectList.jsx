@@ -8,7 +8,7 @@ import { IoIosArrowUp } from 'react-icons/io';
 import ProjectItem from './ProjectItem';
 
 const ProjectList = ({ projectsList }) => (
-  <div className="p-5">
+  <div className="w-full p-5">
     <div className="flex items-start justify-between">
       <div className="flex items-center space-x-2">
         <IoIosArrowUp
