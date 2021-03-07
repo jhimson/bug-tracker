@@ -42,7 +42,7 @@ const IssueTableItem = ({
     switch (status) {
       case 'Open':
         return (
-          <button className="p-1 px-5 text-sm text-white bg-red-400 rounded-full">
+          <button className="p-1 px-5 text-sm text-white bg-red-400 rounded-full focus:outline-none">
             {status}
           </button>
         );
@@ -50,7 +50,7 @@ const IssueTableItem = ({
 
       case 'In Progress':
         return (
-          <button className="p-1 px-5 text-sm text-white bg-blue-500 rounded-full">
+          <button className="p-1 px-5 text-sm text-white bg-blue-500 rounded-full focus:outline-none">
             {status}
           </button>
         );
@@ -58,7 +58,7 @@ const IssueTableItem = ({
 
       case 'Resolved':
         return (
-          <button className="p-1 px-5 text-sm text-white bg-green-500 rounded-full">
+          <button className="p-1 px-5 text-sm text-white bg-green-500 rounded-full focus:outline-none">
             {status}
           </button>
         );
@@ -66,7 +66,7 @@ const IssueTableItem = ({
 
       case 'Closed':
         return (
-          <button className="p-1 px-5 text-sm text-white bg-green-800 rounded-full">
+          <button className="p-1 px-5 text-sm text-white bg-green-800 rounded-full focus:outline-none">
             {status}
           </button>
         );
