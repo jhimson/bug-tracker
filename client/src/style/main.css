@@ -11542,6 +11542,11 @@ footer,
   line-height: 1;
 }
 
+.text-xxs {
+  font-size: 0.56rem;
+  line-height: 1rem;
+}
+
 .leading-3 {
   line-height: .75rem;
 }
@@ -40135,6 +40140,11 @@ footer,
     line-height: 1;
   }
 
+  .sm\:text-xxs {
+    font-size: 0.56rem;
+    line-height: 1rem;
+  }
+
   .sm\:leading-3 {
     line-height: .75rem;
   }
@@ -68683,6 +68693,11 @@ footer,
   .md\:text-9xl {
     font-size: 8rem;
     line-height: 1;
+  }
+
+  .md\:text-xxs {
+    font-size: 0.56rem;
+    line-height: 1rem;
   }
 
   .md\:leading-3 {
@@ -97235,6 +97250,11 @@ footer,
     line-height: 1;
   }
 
+  .lg\:text-xxs {
+    font-size: 0.56rem;
+    line-height: 1rem;
+  }
+
   .lg\:leading-3 {
     line-height: .75rem;
   }
@@ -125785,6 +125805,11 @@ footer,
     line-height: 1;
   }
 
+  .xl\:text-xxs {
+    font-size: 0.56rem;
+    line-height: 1rem;
+  }
+
   .xl\:leading-3 {
     line-height: .75rem;
   }
@@ -154333,6 +154358,11 @@ footer,
   .\32xl\:text-9xl {
     font-size: 8rem;
     line-height: 1;
+  }
+
+  .\32xl\:text-xxs {
+    font-size: 0.56rem;
+    line-height: 1rem;
   }
 
   .\32xl\:leading-3 {

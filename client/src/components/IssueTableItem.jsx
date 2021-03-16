@@ -42,7 +42,7 @@ const IssueTableItem = ({
     switch (status) {
       case 'Open':
         return (
-          <button className="p-1 px-5 text-sm text-white bg-red-400 rounded-full focus:outline-none">
+          <button className="p-1 px-5 text-xs text-white bg-red-400 rounded-full focus:outline-none lg:text-lg">
             {status}
           </button>
         );
@@ -50,7 +50,7 @@ const IssueTableItem = ({
 
       case 'In Progress':
         return (
-          <button className="p-1 px-5 text-sm text-white bg-blue-500 rounded-full focus:outline-none">
+          <button className="p-1 px-5 text-white bg-blue-500 rounded-full text-xxs focus:outline-none lg:text-lg">
             {status}
           </button>
         );
@@ -58,7 +58,7 @@ const IssueTableItem = ({
 
       case 'Resolved':
         return (
-          <button className="p-1 px-5 text-sm text-white bg-green-500 rounded-full focus:outline-none">
+          <button className="p-1 px-5 text-xs text-white bg-green-500 rounded-full focus:outline-none lg:text-lg">
             {status}
           </button>
         );
@@ -66,7 +66,7 @@ const IssueTableItem = ({
 
       case 'Closed':
         return (
-          <button className="p-1 px-5 text-sm text-white bg-green-800 rounded-full focus:outline-none">
+          <button className="p-1 px-5 text-xs text-white bg-green-800 rounded-full focus:outline-none lg:text-lg">
             {status}
           </button>
         );
@@ -78,15 +78,21 @@ const IssueTableItem = ({
   };
   return (
     <tr className="border">
-      <td className="p-1 text-blue-800 border">{issueKey}</td>
-      <td className="p-1 font-semibold text-gray-600 border">{issueSubject}</td>
+      <td className="p-1 text-xs text-blue-800 border lg:text-lg">
+        {issueKey}
+      </td>
+      <td className="p-1 text-xs font-semibold text-gray-600 border lg:text-lg">
+        {issueSubject}
+      </td>
       <td className="p-1 border ">
         <div className="flex items-center justify-center">
           {priorityArrow(issuePriority)}
         </div>
       </td>
       <td className="p-1 border">{StatusBtnColor(issueStatus)}</td>
-      <td className="p-1 font-semibold text-gray-600 border">{issueDueDate}</td>
+      <td className="p-1 text-sm font-semibold text-gray-600 border lg:text-lg">
+        {issueDueDate}
+      </td>
     </tr>
   );
 };

@@ -10,7 +10,7 @@ const actionMessage = (action) => {
   switch (action) {
     case 'posted':
       return (
-        <p className="font-semibold text-gray-500">
+        <p className="text-sm font-semibold text-gray-500 lg:text-lg">
           posted a{' '}
           <span>
             <button className="px-2 font-semibold text-white bg-blue-400 rounded-full focus:outline-none">
