@@ -4,6 +4,7 @@ const express = require("express");
 const morgan = require("morgan");
 const cors = require("cors");
 const path = require("path");
+const api = require("./api");
 
 const { notFound, errorHandler } = require("./middlewares/errorMiddleware");
 
@@ -17,13 +18,16 @@ app.use(express.json());
 // * Setup Cors Middleware (Cross-Origin Resource Sharing) allow all '*'
 app.use(cors("*"));
 
-//* Error handler middlewares
-app.use(notFound);
-app.use(errorHandler);
-
 if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));
 }
+
+//* Routes
+app.use("/api/v1", api);
+
+//* Error handler middlewares
+app.use(notFound);
+app.use(errorHandler);
 
 app.listen(PORT, async () => {
   try {
