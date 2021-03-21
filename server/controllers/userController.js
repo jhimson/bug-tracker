@@ -40,6 +40,7 @@ const registerUser = asyncHandler(async (req, res) => {
 
   if (rowCount) {
     res.status(201).json({
+      message: `Successfully Created a new user`,
       user_id,
       firstname,
       lastname,
