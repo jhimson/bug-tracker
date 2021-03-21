@@ -5,6 +5,8 @@ const morgan = require("morgan");
 const cors = require("cors");
 const path = require("path");
 
+const { notFound, errorHandler } = require("./middlewares/errorMiddleware");
+
 const PORT = process.env.PORT || 5000;
 const app = express();
 
@@ -14,6 +16,10 @@ app.use(express.json());
 
 // * Setup Cors Middleware (Cross-Origin Resource Sharing) allow all '*'
 app.use(cors("*"));
+
+//* Error handler middlewares
+app.use(notFound);
+app.use(errorHandler);
 
 if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));
