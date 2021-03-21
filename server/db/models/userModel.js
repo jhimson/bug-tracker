@@ -1,4 +1,8 @@
+/* eslint-disable camelcase */
+const bcrypt = require("bcryptjs");
 const db = require("..");
+
+const salt = bcrypt.genSaltSync(10);
 
 const fetchUsers = () => db.query("SELECT * FROM tbl_users");
 
@@ -8,7 +12,18 @@ const findEmail = (email) =>
     values: [email],
   });
 
+const createNewUser = (user) => {
+  const { user_id, firstname, lastname, email, password } = user;
+  const hashedPassword = bcrypt.hashSync(password, salt);
+
+  return db.query({
+    text: `INSERT INTO tbl_users (user_id, firstname, lastname, email, password, is_admin, created_at, updated_at) VALUES ($1, $2, $3, $4, $5, DEFAULT, DEFAULT, DEFAULT)`,
+    values: [user_id, firstname, lastname, email, hashedPassword],
+  });
+};
+
 module.exports = {
   fetchUsers,
   findEmail,
+  createNewUser,
 };
