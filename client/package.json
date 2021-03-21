@@ -23,7 +23,6 @@
     "uuidv4": "^6.2.4",
     "axios": "^0.20.0",
     "moment": "^2.29.1"
-    
   },
   "scripts": {
     "start": "react-scripts start",
