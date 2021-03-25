@@ -11,7 +11,7 @@ const {
   USER_REGISTER_FAIL,
 } = userConstants;
 
-export const register = (email, firstname, lastname, password) => async (
+export const register = ({ email, firstname, lastname, password }) => async (
   dispatch
 ) => {
   const user_id = uuid();
