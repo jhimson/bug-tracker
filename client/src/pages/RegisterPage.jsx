@@ -11,26 +11,18 @@ import Layout from '../components/Layout';
 // actions
 import { register } from '../actions/userActions';
 
+// custom hooks
+import useForm from '../hooks/useForm';
+
 const RegisterPage = () => {
-  const [firstname, setFirstname] = useState('');
-  const [lastname, setLastname] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-
   const dispatch = useDispatch();
+  const { values, handleChange, onSubmitHandler } = useForm({
+    firstname: '',
+    lastname: '',
+    email: '',
+    password: '',
+  });
 
-  const resetFields = () => {
-    setFirstname('');
-    setLastname('');
-    setEmail('');
-    setPassword('');
-  };
-
-  const onSubmitRegister = (event) => {
-    event.preventDefault();
-    dispatch(register(email, firstname, lastname, password));
-    resetFields();
-  };
   return (
     <Layout>
       <div className="flex items-center justify-center h-screen">
@@ -40,7 +32,7 @@ const RegisterPage = () => {
           </div>
           <form
             className="space-y-4"
-            onSubmit={(event) => onSubmitRegister(event)}
+            onSubmit={(event) => onSubmitHandler(event, dispatch, register)}
           >
             <h1 className="text-2xl font-bold text-center">Account Register</h1>
             <div className="flex space-x-5">
@@ -50,8 +42,9 @@ const RegisterPage = () => {
                 </label>
                 <input
                   type="text"
-                  value={firstname}
-                  onChange={(e) => setFirstname(e.target.value)}
+                  name="firstname"
+                  value={values.firstname}
+                  onChange={(e) => handleChange(e)}
                   className="block w-full px-4 py-2 border border-gray-400 rounded focus:outline-none focus:border-blue-500"
                 />
               </div>
@@ -61,8 +54,9 @@ const RegisterPage = () => {
                 </label>
                 <input
                   type="text"
-                  value={lastname}
-                  onChange={(e) => setLastname(e.target.value)}
+                  name="lastname"
+                  value={values.lastname}
+                  onChange={(e) => handleChange(e)}
                   className="block w-full px-4 py-2 border border-gray-400 rounded focus:outline-none focus:border-blue-500"
                 />
               </div>
@@ -73,8 +67,9 @@ const RegisterPage = () => {
               </label>
               <input
                 type="text"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                name="email"
+                value={values.email}
+                onChange={(e) => handleChange(e)}
                 className="block w-full px-4 py-2 border border-gray-400 rounded focus:outline-none focus:border-blue-500"
               />
             </div>
@@ -84,8 +79,9 @@ const RegisterPage = () => {
               </label>
               <input
                 type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                name="password"
+                value={values.password}
+                onChange={(e) => handleChange(e)}
                 className="block w-full px-4 py-2 border border-gray-400 rounded focus:outline-none focus:border-blue-500"
               />
             </div>
