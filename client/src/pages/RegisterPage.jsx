@@ -2,16 +2,22 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import logo from '../assets/images/login-logo.png';
 
 // components
 import Layout from '../components/Layout';
+
+// actions
+import { register } from '../actions/userActions';
 
 const RegisterPage = () => {
   const [firstname, setFirstname] = useState('');
   const [lastname, setLastname] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  const dispatch = useDispatch();
 
   const resetFields = () => {
     setFirstname('');
@@ -22,6 +28,7 @@ const RegisterPage = () => {
 
   const onSubmitRegister = (event) => {
     event.preventDefault();
+    dispatch(register(email, firstname, lastname, password));
     resetFields();
   };
   return (
