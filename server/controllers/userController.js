@@ -36,7 +36,7 @@ const registerUser = asyncHandler(async (req, res) => {
   const newUser = await createNewUser(req.body);
 
   const { rows, rowCount } = newUser;
-  const { user_id, firstname, lastname, email, is_admin } = rows[0];
+  const { user_id, firstname, lastname, email } = rows[0];
 
   if (rowCount) {
     res.status(201).json({
@@ -45,7 +45,6 @@ const registerUser = asyncHandler(async (req, res) => {
       firstname,
       lastname,
       email,
-      is_admin,
       token: generateToken(user_id),
     });
   } else {
