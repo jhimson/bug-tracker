@@ -1,27 +1,42 @@
 /* eslint-disable react/button-has-type */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
 import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import logo from '../assets/images/login-logo.png';
 
-// components
+// ? components
 import Layout from '../components/Layout';
 
-// actions
-import { register } from '../actions/userActions';
+// ? actions
+import { registerNewUser } from '../actions/userActions';
 
-// custom hooks
-import useForm from '../hooks/useForm';
+// ? form validation schema
+const schema = yup.object().shape({
+  firstname: yup.string().required('Firstname is required*'),
+  lastname: yup.string().required('Lastname is required*'),
+  email: yup.string().email().required('Email is required*'),
+  password: yup.string().min(5).required('Password is required*'),
+});
 
 const RegisterPage = () => {
-  const dispatch = useDispatch();
-  const { values, handleChange, onSubmitHandler } = useForm({
-    firstname: '',
-    lastname: '',
-    email: '',
-    password: '',
+  const { register, handleSubmit, errors, reset } = useForm({
+    resolver: yupResolver(schema),
   });
+  const dispatch = useDispatch();
+  // ? Global state (Store)
+  const error = useSelector((state) => state.userRegister.error);
+
+  const onSubmit = (data) => {
+    console.log(errors);
+    if (Object.keys(errors).length === 0) {
+      dispatch(registerNewUser(data));
+      reset();
+    }
+  };
 
   return (
     <Layout>
@@ -30,60 +45,66 @@ const RegisterPage = () => {
           <div>
             <img src={logo} alt="" className="w-full h-72" />
           </div>
-          <form
-            className="space-y-4"
-            onSubmit={(event) => onSubmitHandler(event, dispatch, register)}
-          >
+          <form className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
             <h1 className="text-2xl font-bold text-center">Account Register</h1>
-            <div className="flex space-x-5">
-              <div>
-                <label htmlFor="firstname" className="w-3/6 font-semibold">
-                  Firstname:
-                </label>
-                <input
-                  type="text"
-                  name="firstname"
-                  value={values.firstname}
-                  onChange={(e) => handleChange(e)}
-                  className="block w-full px-4 py-2 border border-gray-400 rounded focus:outline-none focus:border-blue-500"
-                />
-              </div>
-              <div>
-                <label htmlFor="lastname" className="w-3/6 font-semibold">
-                  Lastname:
-                </label>
-                <input
-                  type="text"
-                  name="lastname"
-                  value={values.lastname}
-                  onChange={(e) => handleChange(e)}
-                  className="block w-full px-4 py-2 border border-gray-400 rounded focus:outline-none focus:border-blue-500"
-                />
-              </div>
+            <div>
+              <label htmlFor="firstname" className="w-3/6 font-semibold">
+                Firstname:
+              </label>
+              <input
+                ref={register}
+                type="text"
+                name="firstname"
+                className="block w-full px-4 py-2 border border-gray-400 rounded focus:outline-none focus:border-blue-500"
+              />
+              <span className="font-semibold text-red-700">
+                {errors.firstname && errors.firstname.message}
+              </span>
+            </div>
+            <div>
+              <label htmlFor="lastname" className="w-full font-semibold">
+                Lastname:
+              </label>
+              <input
+                ref={register}
+                type="text"
+                name="lastname"
+                className="block w-full px-4 py-2 border border-gray-400 rounded focus:outline-none focus:border-blue-500"
+              />
+              <span className="font-semibold text-red-700">
+                {errors.lastname && errors.lastname.message}
+              </span>
             </div>
             <div>
               <label htmlFor="email" className="font-semibold">
                 Email:
               </label>
               <input
+                ref={register}
                 type="text"
                 name="email"
-                value={values.email}
-                onChange={(e) => handleChange(e)}
                 className="block w-full px-4 py-2 border border-gray-400 rounded focus:outline-none focus:border-blue-500"
               />
+              <span className="font-semibold text-red-700">
+                {errors.email && errors.email.message}
+              </span>
+              <span className="font-semibold text-red-700">
+                {error && error}
+              </span>
             </div>
             <div>
               <label htmlFor="password" className="font-semibold">
                 Password:
               </label>
               <input
+                ref={register}
                 type="password"
                 name="password"
-                value={values.password}
-                onChange={(e) => handleChange(e)}
                 className="block w-full px-4 py-2 border border-gray-400 rounded focus:outline-none focus:border-blue-500"
               />
+              <span className="font-semibold text-red-700">
+                {errors.password && errors.password.message}
+              </span>
             </div>
             <div>
               <button className="w-full py-2 mt-5 text-lg font-bold bg-blue-400 rounded focus:outline-none focus:ring-2 ">
