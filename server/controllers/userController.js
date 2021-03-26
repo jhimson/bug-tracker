@@ -1,10 +1,12 @@
 /* eslint-disable camelcase */
 const asyncHandler = require("express-async-handler");
+const bcrypt = require("bcryptjs");
 
 const {
   fetchUsers,
   findEmail,
   createNewUser,
+  findUser,
 } = require("../db/models/userModel");
 const { generateToken } = require("../utils/auth");
 
@@ -53,7 +55,27 @@ const registerUser = asyncHandler(async (req, res) => {
   }
 });
 
+const authUser = asyncHandler(async (req, res) => {
+  const { email, password } = req.body;
+  const { rowCount, rows } = await findUser(email);
+  const userData = rows[0];
+  if (rowCount && bcrypt.compareSync(password, userData.password)) {
+    res.json({
+      user_id: userData.user_id,
+      firstname: userData.firstname,
+      lastname: userData.lastname,
+      email: userData.email,
+      isAdmin: userData.is_admin,
+      token: generateToken(userData.user_id),
+    });
+  } else {
+    res.status(401);
+    throw new Error("Invalid Username/Password");
+  }
+});
+
 module.exports = {
   getUsers,
   registerUser,
+  authUser,
 };
