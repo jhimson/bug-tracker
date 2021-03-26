@@ -22,8 +22,15 @@ const createNewUser = async (user) => {
   });
 };
 
+const findUser = (email) =>
+  db.query({
+    text: `SELECT * FROM tbl_users WHERE email = $1`,
+    values: [email],
+  });
+
 module.exports = {
   fetchUsers,
   findEmail,
   createNewUser,
+  findUser,
 };
