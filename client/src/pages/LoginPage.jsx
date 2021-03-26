@@ -76,7 +76,7 @@ const LoginPage = () => {
               </button>
             </div>
             <div>
-              <p className="mt-5 text-center text-md">
+              <p className="mt-5 font-semibold text-center text-md">
                 Don't have an account?{' '}
                 <Link to="/register" className="text-purple-600">
                   Sign up
