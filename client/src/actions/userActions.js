@@ -10,6 +10,7 @@ const {
   USER_REGISTER_SUCCESS,
   USER_REGISTER_FAIL,
   SET_ERROR_TO_NULL,
+  USER_REGISTER_RESET,
 } = userConstants;
 
 export const registerNewUser = ({
@@ -48,4 +49,8 @@ export const registerNewUser = ({
           : error.message,
     });
   }
+};
+
+export const resetNewUserInfo = () => async (dispatch) => {
+  dispatch({ type: USER_REGISTER_RESET });
 };
