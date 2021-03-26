@@ -24,7 +24,7 @@ export const userRegisterReducer = (state = {}, { type, payload }) => {
       return { ...state, loading: false, error: payload };
 
     case USER_REGISTER_RESET:
-      return { ...state, loading: false, userInfo: {} };
+      return { ...state, loading: false, error: null, userInfo: {} };
 
     case SET_ERROR_TO_NULL:
       return {
