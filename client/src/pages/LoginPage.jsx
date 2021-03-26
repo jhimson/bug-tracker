@@ -2,22 +2,36 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState } from 'react';
 
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
+
 import { Link } from 'react-router-dom';
 import logo from '../assets/images/login-logo.png';
 
 // components
 import Layout from '../components/Layout';
 
-// hooks
-import useForm from '../hooks/useForm';
+// ? form validation schema
+const schema = yup.object().shape({
+  email: yup.string().email().required('Email is required*'),
+  password: yup.string().required('Password is required*'),
+});
 
 const LoginPage = () => {
-  const { values, handleChange, onSubmitHandler } = useForm({
-    username: '',
-    password: '',
+  const { register, handleSubmit, errors, reset } = useForm({
+    resolver: yupResolver(schema),
   });
 
-  const { username, password } = values;
+  // ? Functions
+  const onSubmit = (data) => {
+    console.log(data);
+    // dispatch(registerNewUser(data));
+    // reset();
+    // setTimeout(() => {
+    //   dispatch(resetNewUserInfo());
+    // }, 5000);
+  };
 
   return (
     <Layout>
@@ -26,34 +40,35 @@ const LoginPage = () => {
           <div>
             <img src={logo} alt="" className="w-full h-72" />
           </div>
-          <form
-            className="space-y-2"
-            onSubmit={(event) => onSubmitHandler(event)}
-          >
+          <form className="space-y-2" onSubmit={handleSubmit(onSubmit)}>
             <h1 className="text-2xl font-bold text-center">Account Login</h1>
             <div>
               <label htmlFor="username" className="font-semibold">
-                Username:
+                Email:
               </label>
               <input
+                ref={register}
                 type="text"
-                name="username"
-                value={username}
-                onChange={(e) => handleChange(e)}
+                name="email"
                 className="block w-full px-4 py-2 border border-gray-400 rounded focus:outline-none focus:border-blue-500"
               />
+              <span className="font-semibold text-red-700">
+                {errors.email && errors.email.message}
+              </span>
             </div>
             <div>
               <label htmlFor="password" className="font-semibold">
                 Password:
               </label>
               <input
+                ref={register}
                 type="password"
                 name="password"
-                value={password}
-                onChange={(e) => handleChange(e)}
                 className="block w-full px-4 py-2 border border-gray-400 rounded focus:outline-none focus:border-blue-500"
               />
+              <span className="font-semibold text-red-700">
+                {errors.password && errors.password.message}
+              </span>
             </div>
             <div>
               <button className="w-full py-2 mt-5 text-lg font-bold bg-blue-400 rounded focus:outline-none focus:ring-2 ">
