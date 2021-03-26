@@ -2,26 +2,36 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState } from 'react';
 
-// components
 import { Link } from 'react-router-dom';
-import Layout from '../components/Layout';
-
 import logo from '../assets/images/login-logo.png';
 
+// components
+import Layout from '../components/Layout';
+
+// hooks
+import useForm from '../hooks/useForm';
+
 const LoginPage = () => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  // const [username, setUsername] = useState('');
+  // const [password, setPassword] = useState('');
 
-  const resetFields = () => {
-    setUsername('');
-    setPassword('');
-  };
+  const { values, handleChange, onSubmitHandler } = useForm({
+    username: '',
+    password: '',
+  });
 
-  const onSubmitLogin = (event) => {
-    event.preventDefault();
-    // console.log(username, password);
-    resetFields();
-  };
+  const { username, password } = values;
+
+  // const resetFields = () => {
+  //   setUsername('');
+  //   setPassword('');
+  // };
+
+  // const onSubmitLogin = (event) => {
+  //   event.preventDefault();
+  //   // console.log(username, password);
+  //   resetFields();
+  // };
   return (
     <Layout>
       <div className="flex items-center justify-center h-screen">
@@ -31,7 +41,7 @@ const LoginPage = () => {
           </div>
           <form
             className="space-y-2"
-            onSubmit={(event) => onSubmitLogin(event)}
+            onSubmit={(event) => onSubmitHandler(event)}
           >
             <h1 className="text-2xl font-bold text-center">Account Login</h1>
             <div>
@@ -40,8 +50,9 @@ const LoginPage = () => {
               </label>
               <input
                 type="text"
+                name="username"
                 value={username}
-                onChange={(e) => setUsername(e.target.value)}
+                onChange={(e) => handleChange(e)}
                 className="block w-full px-4 py-2 border border-gray-400 rounded focus:outline-none focus:border-blue-500"
               />
             </div>
@@ -51,8 +62,9 @@ const LoginPage = () => {
               </label>
               <input
                 type="password"
+                name="password"
                 value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={(e) => handleChange(e)}
                 className="block w-full px-4 py-2 border border-gray-400 rounded focus:outline-none focus:border-blue-500"
               />
             </div>
