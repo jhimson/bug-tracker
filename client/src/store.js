@@ -7,7 +7,7 @@ import { userRegisterReducer } from './reducers/userReducer';
 const middleware = [thunk];
 
 const initialState = {
-  userLogin: {},
+  userRegister: { userInfo: { message: null }, error: null },
 };
 
 const reducer = combineReducers({
