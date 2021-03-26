@@ -13,7 +13,7 @@ import Layout from '../components/Layout';
 import FlashMessage from '../components/FlashMessage';
 
 // ? actions
-import { registerNewUser } from '../actions/userActions';
+import { registerNewUser, resetNewUserInfo } from '../actions/userActions';
 
 // ? form validation schema
 const schema = yup.object().shape({
@@ -32,9 +32,13 @@ const RegisterPage = () => {
   const error = useSelector((state) => state.userRegister.error);
   const message = useSelector((state) => state.userRegister.userInfo.message);
 
+  // ? Functions
   const onSubmit = (data) => {
     dispatch(registerNewUser(data));
     reset();
+    setTimeout(() => {
+      dispatch(resetNewUserInfo());
+    }, 5000);
   };
 
   return (
