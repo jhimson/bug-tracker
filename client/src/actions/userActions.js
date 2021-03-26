@@ -9,8 +9,12 @@ const {
   USER_REGISTER_REQUEST,
   USER_REGISTER_SUCCESS,
   USER_REGISTER_FAIL,
-  SET_ERROR_TO_NULL,
   USER_REGISTER_RESET,
+  SET_ERROR_TO_NULL,
+  USER_LOGIN_REQUEST,
+  USER_LOGIN_SUCCESS,
+  USER_LOGIN_FAIL,
+  USER_LOGOUT,
 } = userConstants;
 
 export const registerNewUser = ({
@@ -43,6 +47,34 @@ export const registerNewUser = ({
   } catch (error) {
     dispatch({
       type: USER_REGISTER_FAIL,
+      payload:
+        error.response && error.response.data.error.message
+          ? error.response.data.error.message
+          : error.message,
+    });
+  }
+};
+
+export const userLogin = ({ email, password }) => async (dispatch) => {
+  const config = {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  };
+
+  try {
+    dispatch({ type: USER_LOGIN_REQUEST });
+
+    const { data } = await Axios.post(
+      'http://localhost:5000/api/v1/users/login',
+      { email, password },
+      config
+    );
+    console.log('awts', data);
+    dispatch({ type: USER_LOGIN_SUCCESS, payload: data });
+  } catch (error) {
+    dispatch({
+      type: USER_LOGIN_FAIL,
       payload:
         error.response && error.response.data.error.message
           ? error.response.data.error.message
