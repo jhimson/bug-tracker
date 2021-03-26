@@ -2,16 +2,18 @@ import { createStore, combineReducers, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
-import { userRegisterReducer } from './reducers/userReducer';
+import { userRegisterReducer, userLoginReducer } from './reducers/userReducer';
 
 const middleware = [thunk];
 
 const initialState = {
   userRegister: { userInfo: { message: null }, error: null },
+  userLogin: {},
 };
 
 const reducer = combineReducers({
   userRegister: userRegisterReducer,
+  userLogin: userLoginReducer,
 });
 
 const store = createStore(
