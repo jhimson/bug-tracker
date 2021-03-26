@@ -12,9 +12,6 @@ import Layout from '../components/Layout';
 import useForm from '../hooks/useForm';
 
 const LoginPage = () => {
-  // const [username, setUsername] = useState('');
-  // const [password, setPassword] = useState('');
-
   const { values, handleChange, onSubmitHandler } = useForm({
     username: '',
     password: '',
@@ -22,16 +19,6 @@ const LoginPage = () => {
 
   const { username, password } = values;
 
-  // const resetFields = () => {
-  //   setUsername('');
-  //   setPassword('');
-  // };
-
-  // const onSubmitLogin = (event) => {
-  //   event.preventDefault();
-  //   // console.log(username, password);
-  //   resetFields();
-  // };
   return (
     <Layout>
       <div className="flex items-center justify-center h-screen">
