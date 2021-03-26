@@ -9,6 +9,7 @@ const {
   USER_REGISTER_REQUEST,
   USER_REGISTER_SUCCESS,
   USER_REGISTER_FAIL,
+  SET_ERROR_TO_NULL,
 } = userConstants;
 
 export const registerNewUser = ({
@@ -33,6 +34,7 @@ export const registerNewUser = ({
     );
 
     dispatch({ type: USER_REGISTER_SUCCESS, payload: data });
+    dispatch({ type: SET_ERROR_TO_NULL, payload: data });
 
     // dispatch({ type: USER_LOGIN_SUCCESS, payload: data });
 
