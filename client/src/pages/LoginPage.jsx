@@ -1,42 +1,53 @@
 /* eslint-disable react/button-has-type */
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React, { useState } from 'react';
+import React from 'react';
 
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 
 import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import logo from '../assets/images/login-logo.png';
 
-// components
+// ? components
 import Layout from '../components/Layout';
+import FlashMessage from '../components/FlashMessage';
+
+// ? ----------------------
+
+// ? actions
+import { userLogin } from '../actions/userActions';
+// ? ----------------------
 
 // ? form validation schema
 const schema = yup.object().shape({
   email: yup.string().email().required('Email is required*'),
   password: yup.string().required('Password is required*'),
 });
+// ? ----------------------
 
 const LoginPage = () => {
   const { register, handleSubmit, errors, reset } = useForm({
     resolver: yupResolver(schema),
   });
+  const dispatch = useDispatch();
+
+  // ? Global state (Store)
+  const error = useSelector((state) => state.userLogin.error);
 
   // ? Functions
   const onSubmit = (data) => {
     console.log(data);
-    // dispatch(registerNewUser(data));
-    // reset();
-    // setTimeout(() => {
-    //   dispatch(resetNewUserInfo());
-    // }, 5000);
+    dispatch(userLogin(data));
   };
+  // ? ----------------------
 
   return (
     <Layout>
       <div className="flex items-center justify-center h-screen">
         <div className="w-full h-auto p-5 bg-gray-200 rounded-lg md:w-3/4 lg:w-1/2 xl:w-1/4">
+          {error ? <FlashMessage type="danger" message={error} /> : null}
           <div>
             <img src={logo} alt="" className="w-full h-72" />
           </div>
