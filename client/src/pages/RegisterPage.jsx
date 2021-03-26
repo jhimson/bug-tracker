@@ -10,6 +10,7 @@ import logo from '../assets/images/login-logo.png';
 
 // ? components
 import Layout from '../components/Layout';
+import FlashMessage from '../components/FlashMessage';
 
 // ? actions
 import { registerNewUser } from '../actions/userActions';
@@ -29,19 +30,20 @@ const RegisterPage = () => {
   const dispatch = useDispatch();
   // ? Global state (Store)
   const error = useSelector((state) => state.userRegister.error);
+  const message = useSelector((state) => state.userRegister.userInfo.message);
 
   const onSubmit = (data) => {
-    console.log(errors);
-    if (Object.keys(errors).length === 0) {
-      dispatch(registerNewUser(data));
-      reset();
-    }
+    dispatch(registerNewUser(data));
+    reset();
   };
 
   return (
     <Layout>
       <div className="flex items-center justify-center h-screen">
         <div className="w-full h-auto p-5 bg-gray-200 rounded-lg md:w-3/4 lg:w-1/2 xl:w-1/4">
+          {error ? <FlashMessage type="danger" message={error} /> : null}
+          {message ? <FlashMessage type="success" message={message} /> : null}
+
           <div>
             <img src={logo} alt="" className="w-full h-72" />
           </div>
@@ -88,9 +90,6 @@ const RegisterPage = () => {
               <span className="font-semibold text-red-700">
                 {errors.email && errors.email.message}
               </span>
-              <span className="font-semibold text-red-700">
-                {error && error}
-              </span>
             </div>
             <div>
               <label htmlFor="password" className="font-semibold">
@@ -112,7 +111,7 @@ const RegisterPage = () => {
               </button>
             </div>
             <div>
-              <p className="mt-5 text-center text-md">
+              <p className="mt-5 font-bold text-center text-md">
                 Already have an account?{' '}
                 <Link to="/" className="text-purple-600">
                   Sign in
