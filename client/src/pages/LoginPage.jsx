@@ -10,17 +10,17 @@ import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import logo from '../assets/images/login-logo.png';
 
-// ? components
+// ? COMPONENTS
 import Layout from '../components/Layout';
 import FlashMessage from '../components/FlashMessage';
 
 // ? ----------------------
 
-// ? actions
+// ? ACTIONS
 import { userLogin } from '../actions/userActions';
 // ? ----------------------
 
-// ? form validation schema
+// ? VALIDATION SCHEMAS
 const schema = yup.object().shape({
   email: yup.string().email().required('Email is required*'),
   password: yup.string().required('Password is required*'),
@@ -33,10 +33,10 @@ const LoginPage = () => {
   });
   const dispatch = useDispatch();
 
-  // ? Global state (Store)
+  // ? GLOBAL STATE (Store)
   const error = useSelector((state) => state.userLogin.error);
 
-  // ? Functions
+  // ? FUNCTIONS
   const onSubmit = (data) => {
     console.log(data);
     dispatch(userLogin(data));
