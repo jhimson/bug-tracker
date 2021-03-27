@@ -18,13 +18,18 @@ export const userRegisterReducer = (state = {}, { type, payload }) => {
       return { ...state, loading: true };
 
     case USER_REGISTER_SUCCESS:
-      return { ...state, loading: false, error: null, userInfo: payload };
+      return {
+        ...state,
+        loading: false,
+        error: null,
+        userRegisterInfo: payload,
+      };
 
     case USER_REGISTER_FAIL:
       return { ...state, loading: false, error: payload };
 
     case USER_REGISTER_RESET:
-      return { ...state, loading: false, error: null, userInfo: {} };
+      return { ...state, loading: false, error: null, userRegisterInfo: {} };
 
     case SET_ERROR_TO_NULL:
       return {
@@ -44,13 +49,13 @@ export const userLoginReducer = (state = {}, { type, payload }) => {
       return { ...state, loading: true };
 
     case USER_LOGIN_SUCCESS:
-      return { ...state, loading: false, userInfo: payload };
+      return { ...state, loading: false, error: null, userLoginInfo: payload };
 
     case USER_LOGIN_FAIL:
       return { ...state, loading: false, error: payload };
 
     case USER_LOGOUT:
-      return { ...state, userInfo: null };
+      return { ...state, userLoginInfo: null };
 
     default:
       return state;
